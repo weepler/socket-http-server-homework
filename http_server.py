@@ -94,11 +94,35 @@ def response_path(path):
     # * the path points to a file INSIDE OF webroot eg: '/sample.txt'
     # * the path doesn't point to an existing directory or file INSIDE OF webroot
 
+    content = b""
+    mime_type = b""
+
+    # path is something like '/images/sample_1.png' we need to take this 
+    # path and use it to find the absolute path of this file is if it 
+    # exists. 
+    absolute_path = os.path.join(os.getcwd(), 'webroot', path)
+
+    #if os.path.is_dir(absolute_path): this is the predicate that reports
+    # if a path exists in our system. 
+
     # if the path points to a directory: 
-    if foo:
+
+    piece_sice - 4096
+
+    if os.path.is_dir(absolute_path):
         pass
+        with open(absolute_path,"rb") as in_file, open("out-file","wb") as out-file:
+            while True:
+                piece = in_file.read(piece_size)
+
+                if piece =="":
+                    break 
+                out-file.write(piece)
     # else if the path points to a file:
-    elif bar:
+    elif os.path.isfile(absolute_path):
+        with open(absolute_path,"rb") as f:
+            content = f.read()
+        mime_type = mimetypes.guess_type(absolute_path)[0].encode()
         pass
     # else if the path doesn't point to an existing directory or file: 
     else:
@@ -114,8 +138,8 @@ def response_path(path):
     # result of executing `make_time.py`. But you need only return the
     # CONTENTS of `make_time.py`.
     
-    content = b"not implemented"
-    mime_type = b"not implemented"
+    # content = b"not implemented"
+    # mime_type = b"not implemented"
 
     return content, mime_type
 
