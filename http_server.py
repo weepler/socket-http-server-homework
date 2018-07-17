@@ -1,6 +1,9 @@
 import socket
 import sys
 import traceback
+import os 
+
+# started in class tutorial 07/16/2018 
 
 def response_ok(body=b"This is a minimal response", mimetype=b"text/plain"):
     """
@@ -86,6 +89,20 @@ def response_path(path):
 
     """
 
+    # cases:
+    # * the path points to a directory .eg: '/' or '/images/'
+    # * the path points to a file INSIDE OF webroot eg: '/sample.txt'
+    # * the path doesn't point to an existing directory or file INSIDE OF webroot
+
+    # if the path points to a directory: 
+    if foo:
+        pass
+    # else if the path points to a file:
+    elif bar:
+        pass
+    # else if the path doesn't point to an existing directory or file: 
+    else:
+        raise NameError
     # TODO: Raise a NameError if the requested content is not present
     # under webroot.
 
@@ -130,6 +147,7 @@ def server(log_buffer=sys.stderr):
                 print("Request received:\n{}\n\n".format(request))
 
                 try:
+                    # path sould be something like '\sample_1.txt'
                     path = parse_request(request)
 
                     # TODO: Use response_path to retrieve the content and the mimetype,
