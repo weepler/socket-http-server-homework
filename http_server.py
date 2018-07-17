@@ -110,14 +110,9 @@ def response_path(path):
     piece_sice - 4096
 
     if os.path.is_dir(absolute_path):
-        pass
-        with open(absolute_path,"rb") as in_file, open("out-file","wb") as out-file:
-            while True:
-                piece = in_file.read(piece_size)
+        content = " ".join(os.listdir(absolute_path)).encode
+        mime_type = b"text/plain"
 
-                if piece =="":
-                    break 
-                out-file.write(piece)
     # else if the path points to a file:
     elif os.path.isfile(absolute_path):
         with open(absolute_path,"rb") as f:
