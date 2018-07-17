@@ -43,7 +43,11 @@ def response_not_found():
     """Returns a 404 Not Found response"""
 
     # TODO: Implement response_not_found
-    return b""
+    return b"\r\n".join([
+        b"HTTP/1.1 404 NOT FOUND",
+        B"",
+        B"I couldn't find that!",
+        ])
 
 
 def parse_request(request):
@@ -107,8 +111,6 @@ def response_path(path):
 
     # if the path points to a directory: 
 
-    piece_sice - 4096
-
     if os.path.is_dir(absolute_path):
         content = " ".join(os.listdir(absolute_path)).encode
         mime_type = b"text/plain"
@@ -138,6 +140,8 @@ def response_path(path):
 
     return content, mime_type
 
+# this is responsible for calling the server and fitting everything into the 
+# response okay and send it off to the client
 
 def server(log_buffer=sys.stderr):
     address = ('127.0.0.1', 10000)
@@ -171,16 +175,18 @@ def server(log_buffer=sys.stderr):
 
                     # TODO: Use response_path to retrieve the content and the mimetype,
                     # based on the request path.
-
+                    body, mimetype = response_path(path)
                     # TODO:
                     # If response_path raised
                     # a NameError, then let response be a not_found response. Else,
                     # use the content and mimetype from response_path to build a 
                     # response_ok.
                     response = response_ok(
-                        body=b"Welcome to my web server",
-                        mimetype=b"text/plain"
+                        body=body,
+                        mimetype=mimetype,
                     )
+                except NameError:
+                    response = response_not_found()
                 except NotImplementedError:
                     response = response_method_not_allowed()
 
