@@ -34,7 +34,7 @@ def response_method_not_allowed():
     """Returns a 405 Method Not Allowed response"""
 
     return b"\r\n".join([
-        b"HTTP/1.1 403 Method Not Allowed",
+        b"HTTP/1.1 405 Method Not Allowed",
         b"",
         b"You can't do that on this server!",
     ])
