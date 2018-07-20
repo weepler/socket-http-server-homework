@@ -1,0 +1,3 @@
+{
+  "tests.py::WebTestCase::test_post_yields_method_not_allowed": true
+}

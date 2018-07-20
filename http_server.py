@@ -2,6 +2,7 @@ import socket
 import sys
 import traceback
 import os 
+import mimetypes
 
 # started in class tutorial 07/16/2018 
 
@@ -45,8 +46,8 @@ def response_not_found():
     # TODO: Implement response_not_found
     return b"\r\n".join([
         b"HTTP/1.1 404 NOT FOUND",
-        B"",
-        B"I couldn't find that!",
+        b"",
+        b"I couldn't find that!",
         ])
 
 
@@ -104,15 +105,15 @@ def response_path(path):
     # path is something like '/images/sample_1.png' we need to take this 
     # path and use it to find the absolute path of this file is if it 
     # exists. 
-    absolute_path = os.path.join(os.getcwd(), 'webroot', path)
+    absolute_path = os.path.join(os.getcwd(), 'webroot', path.strip('/'))
 
     #if os.path.is_dir(absolute_path): this is the predicate that reports
     # if a path exists in our system. 
 
     # if the path points to a directory: 
 
-    if os.path.is_dir(absolute_path):
-        content = " ".join(os.listdir(absolute_path)).encode
+    if os.path.isdir(absolute_path):
+        content = " ".join(os.listdir(absolute_path)).encode()
         mime_type = b"text/plain"
 
     # else if the path points to a file:
@@ -183,7 +184,7 @@ def server(log_buffer=sys.stderr):
                     # response_ok.
                     response = response_ok(
                         body=body,
-                        mimetype=mimetype,
+                        mimetype=mimetype
                     )
                 except NameError:
                     response = response_not_found()
@@ -207,4 +208,14 @@ if __name__ == '__main__':
     server()
     sys.exit(0)
 
+'''
+Traceback (most recent call last):
+  File "http_server.py", line 187, in server
+    mimetype=mimetype,
+  File "http_server.py", line 30, in response_ok
+    body,
+TypeError: sequence item 3: expected a bytes-like object, builtin_function_or_method found
+waiting for a connection
+connection - 127.0.0.1:52476
 
+'''

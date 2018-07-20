@@ -1,0 +1,13 @@
+[
+  "tests.py::WebTestCase::test_get_404",
+  "tests.py::WebTestCase::test_get_sample_1_png",
+  "tests.py::WebTestCase::test_get_sample_1_png_mime_type",
+  "tests.py::WebTestCase::test_get_sample_scene_balls_jpeg",
+  "tests.py::WebTestCase::test_get_sample_scene_balls_jpeg_mime_type",
+  "tests.py::WebTestCase::test_get_sample_text_content",
+  "tests.py::WebTestCase::test_get_sample_text_mime_type",
+  "tests.py::WebTestCase::test_images_index",
+  "tests.py::WebTestCase::test_ok_response_at_root_index",
+  "tests.py::WebTestCase::test_post_yields_method_not_allowed",
+  "tests.py::WebTestCase::test_root_index"
+]
